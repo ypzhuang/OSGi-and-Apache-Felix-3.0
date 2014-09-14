@@ -5,7 +5,7 @@
 	<artifactId>com.packtpub.felix.bookshelf-log-impl</artifactId>
 	<version>1.10.0</version>
 	<packaging>bundle</packaging>
-	<name>Bookshelf Log Helper API</name>
+	<name>Bookshelf Log Helper Impl</name>
 
 	<dependencies>
 		<dependency>

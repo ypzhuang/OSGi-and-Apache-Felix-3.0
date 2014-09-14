@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.packtpub.felix</groupId>
 	<artifactId>com.packtpub.felix.bookshelf-service</artifactId>
-	<version>1.8.0</version>
+	<version>1.9.4</version>
 	<name>Bookshelf Service</name>
 	<description>Bookshelf Service</description>
 	<packaging>bundle</packaging>
@@ -14,13 +14,14 @@
 			<artifactId>com.packtpub.felix.bookshelf-inventory-api</artifactId>
 			<version>1.5.0</version>
 		</dependency>
-
+      
 		<dependency>
 			<groupId>org.osgi</groupId>
 			<artifactId>org.osgi.core</artifactId>
-			<version>4.2.0</version>
+			<version>4.3.1</version>
 			<scope>provided</scope>
 		</dependency>
+		
 	</dependencies>
 
 	<build>
@@ -28,18 +29,15 @@
 			<plugin>
 				<groupId>org.apache.felix</groupId>
 				<artifactId>maven-bundle-plugin</artifactId>
-				<version>2.5.0</version>
+				<version>2.5.3</version>
 				<extensions>true</extensions>
 				<configuration>
 					<instructions>
 						<Bundle-Category>business logic</Bundle-Category>
 						<Bundle-SymbolicName>${artifactId}</Bundle-SymbolicName>
-						<Bundle-Activator>com.packtpub.felix.bookshelf.service.impl.activator.BookshelfServiceImplActivator</Bundle-Activator>
-						<!-- 
-						<Export-Package>com.packtpub.felix.bookshelf.serevice.api</Export-Package>
-						<Private-Package>com.packtpub.felix.bookshelf.serevice.impl</Private-Package>
-						 -->
-						 <Export-Package>com.packtpub.felix.bookshelf.service.api,com.packtpub.felix.bookshelf.service.impl </Export-Package>           
+						<!--<Bundle-Activator>com.packtpub.felix.bookshelf.service.impl.activator.BookshelfServiceImplActivator</Bundle-Activator> -->						
+						<!--	<Private-Package>com.packtpub.felix.bookshelf.serevice.impl</Private-Package> -->
+						<Export-Package>com.packtpub.felix.bookshelf.service.api,com.packtpub.felix.bookshelf.service.impl</Export-Package>
 					</instructions>
 					<remoteOBR>repo-rel</remoteOBR>
 					<prefixUrl>file:///C:/projects/felixbook/releases</prefixUrl>
@@ -54,6 +52,23 @@
 					<target>1.7</target>
 				</configuration>
 			</plugin>
+
+			<plugin>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-ipojo-plugin</artifactId>
+				<version>1.8.0</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>ipojo-bundle</goal>
+						</goals>
+						<configuration>
+							<metadata>src/main/resources/metadata.xml</metadata>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
 		</plugins>
 	</build>
 

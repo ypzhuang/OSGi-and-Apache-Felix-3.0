@@ -28,7 +28,7 @@
 		<dependency>
 			<groupId>com.packtpub.felix</groupId>
 			<artifactId>com.packtpub.felix.bookshelf-service</artifactId>
-			<version>1.7.0</version>
+			<version>1.10.0</version>
 			<scope>compile</scope>
 		</dependency>
 	</dependencies>

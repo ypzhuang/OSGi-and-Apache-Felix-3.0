@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.packtpub.felix</groupId>
 	<artifactId>com.packtpub.felix.bookshelf-service</artifactId>
-	<version>1.9.4</version>
+	<version>1.10.0</version>
 	<name>Bookshelf Service</name>
 	<description>Bookshelf Service</description>
 	<packaging>bundle</packaging>
@@ -22,6 +22,11 @@
 			<scope>provided</scope>
 		</dependency>
 		
+		<dependency>
+			<groupId>com.packtpub.felix</groupId>
+			<artifactId>com.packtpub.felix.bookshelf-log-api</artifactId>
+			<version>1.10.0</version>
+		</dependency>
 	</dependencies>
 
 	<build>

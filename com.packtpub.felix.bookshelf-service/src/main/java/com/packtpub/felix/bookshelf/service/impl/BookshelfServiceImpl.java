@@ -8,6 +8,8 @@ import java.util.Set;
 //import org.osgi.framework.BundleContext;
 //import org.osgi.framework.ServiceReference;
 
+
+
 import com.packtpub.felix.bookshelf.inventory.api.Book;
 import com.packtpub.felix.bookshelf.inventory.api.BookAlreadyExistsException;
 import com.packtpub.felix.bookshelf.inventory.api.BookInventory;
@@ -15,6 +17,7 @@ import com.packtpub.felix.bookshelf.inventory.api.BookNotFoundException;
 import com.packtpub.felix.bookshelf.inventory.api.InvalidBookException;
 import com.packtpub.felix.bookshelf.inventory.api.MutableBook;
 import com.packtpub.felix.bookshelf.inventory.api.BookInventory.SearchCriteria;
+import com.packtpub.felix.bookshelf.log.api.BookshelfLogHelper;
 import com.packtpub.felix.bookshelf.service.api.BookshelfService;
 import com.packtpub.felix.bookshelf.service.api.InvalidCredentialsException;
 
@@ -23,6 +26,8 @@ public class BookshelfServiceImpl implements BookshelfService {
 	private String sessionId;
 
 	BookInventory inventory;
+	
+	BookshelfLogHelper logger;
 	//private BundleContext context;
 
 	//public BookshelfServiceImpl(BundleContext context) {
@@ -31,6 +36,12 @@ public class BookshelfServiceImpl implements BookshelfService {
 	public BookshelfServiceImpl(){
 		
 	}
+
+	
+	public BookshelfLogHelper getLogger() {
+		return this.logger;
+	}
+
 
 	@Override
 	public String login(String username, char[] password) throws InvalidCredentialsException {
@@ -70,13 +81,16 @@ public class BookshelfServiceImpl implements BookshelfService {
 	@Override
 	public void addBook(String session, String isbn, String title, String author, String category, int rating)
 			throws BookAlreadyExistsException, InvalidBookException {
+		getLogger().debug(LoggerConstants.LOG_ADD_BOOK, isbn, title, author, category, rating);
 		checkSession(sessionId);
 		BookInventory inv = lookupBookInventory();
+		getLogger().debug(LoggerConstants.LOG_CREATE_BOOK, isbn);
 		MutableBook book = inv.createBook(isbn);
 		book.setTitle(title);
 		book.setAuthor(author);
 		book.setCategory(category);
 		book.setRating(rating);
+		getLogger().debug(LoggerConstants.LOG_STORE_BOOK, isbn);
 		inv.storeBook(book);
 	}
 
@@ -112,6 +126,14 @@ public class BookshelfServiceImpl implements BookshelfService {
 		checkSession(sessionId);
 		BookInventory inventory = lookupBookInventory();
 		return inventory.loadBook(isbn);
+	}
+	
+	@Override
+	public MutableBook getBookForEdit(String sessionId, String isbn) throws BookNotFoundException{
+		getLogger().debug(LoggerConstants.LOG_EDIT_BY_ISBN, isbn);
+		checkSession(sessionId);
+		BookInventory inventory = lookupBookInventory();
+		return inventory.loadBookForEdit(isbn);
 	}
 
 	private BookInventory lookupBookInventory() {

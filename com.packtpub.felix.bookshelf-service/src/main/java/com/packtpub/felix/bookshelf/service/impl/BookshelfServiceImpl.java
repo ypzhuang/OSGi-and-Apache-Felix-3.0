@@ -10,6 +10,7 @@ import java.util.Set;
 
 
 
+
 import com.packtpub.felix.bookshelf.inventory.api.Book;
 import com.packtpub.felix.bookshelf.inventory.api.BookAlreadyExistsException;
 import com.packtpub.felix.bookshelf.inventory.api.BookInventory;
@@ -185,4 +186,14 @@ public class BookshelfServiceImpl implements BookshelfService {
 		return inv.searchBooks(criteria);
 	}
 
+
+	@Override
+	public Set<String> getCategories(String sessionId) {
+		getLogger().debug(LoggerConstants.LOG_GET_CATEGORIES);
+		checkSession(sessionId);
+		BookInventory inv = lookupBookInventory();
+		return inv.getCategories();	
+	}
+
+	
 }

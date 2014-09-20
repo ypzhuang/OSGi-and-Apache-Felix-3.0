@@ -32,4 +32,6 @@ public interface BookshelfService extends Authentication {
 	Set<String> searchBooksByTitle(String session, String titleLike);
 
 	Set<String> searchBooksByRating(String session, int ratingLower, int ratingUpper);
+	
+	Set<String> getCategories(String sessionId);
 }

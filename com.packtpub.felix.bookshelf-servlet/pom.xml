@@ -29,13 +29,6 @@
 			<artifactId>com.packtpub.felix.bookshelf-inventory-api</artifactId>
 			<version>1.5.0</version>
 		</dependency>
-
-
-		<dependency>
-			<groupId>com.packtpub.felix</groupId>
-			<artifactId>com.packtpub.felix.bookshelf-log-api</artifactId>
-			<version>1.10.0</version>
-		</dependency>
 	</dependencies>
 
 	<build>

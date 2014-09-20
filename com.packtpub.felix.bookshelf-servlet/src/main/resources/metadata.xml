@@ -1,0 +1,19 @@
+<ipojo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="org.apache.felix.ipojo
+      http://felix.apache.org/ipojo/schemas/CURRENT/core.xsd"
+	xmlns="org.apache.felix.ipojo">
+
+	<component
+		classname="com.packtpub.felix.bookshelf.servlet.BookshelfServletImpl" name="BookshelfServletImpl" immediate="true">
+		<provides>
+		   <property name="alias" field="alias" />
+		</provides>
+		<requires field="logger" />
+		<requires field="service" />
+	</component>
+
+	<instance component="BookshelfServletImpl" name="bookshelf.servlet">
+	    <property name="alias" value="/bookshelf"/>
+	</instance>
+	
+</ipojo>

@@ -1,0 +1,13 @@
+@CHARSET "ISO-8859-1";
+
+.BookListHeader {
+	background-color: blue;	
+}
+
+.BookList {
+	width:	100%;
+}
+
+.BookListEntry {
+	background-color: light grey;	
+}

@@ -1,0 +1,11 @@
+source from the book :OSGi and Apache Felix 3.0
+As the felix has updated to 4.4.1, so some dependency issues will cause error.
+I have fixed the issues in the all pom.xml files.
+
+If you use jdk1.7, you should 
+  1, java -XX:-UseSplitVerifier  -jar bin/felix.jar 
+  2, java -XX:-UseSplitVerifier -Dhttp.proxyHost=xxx.sgp.xx.com -Dhttp.proxyPort=8080 -Dhttp.proxyUser= -Dhttp.proxyPassword= -jar bin/felix.jar
+
+Else you'll get error like:
+  Expecting a stackmap frame at branch target 12.Expected stackmap frame at this location. This is the jdk1.7 bug,so you should add -XX:-UseSplitVerifier
+
